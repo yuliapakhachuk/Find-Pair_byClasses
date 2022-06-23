@@ -1,0 +1,259 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background-image: linear-gradient(to right bottom, #cb88c3, #b19adf, #8eacf0, #6abdf4, #54caed, #4ad3e5, #53dbd9, #6ae1c9, #7ae7ba, #92eca8, #aeef95, #cdf083);    color: #ffffff;
+    font-family: 'Kanit',sans-serif;
+    
+    font-style: italic;
+    font-weight: 500;
+    height: 100vh;
+}
+
+button {
+    display: block;
+    width: 130px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 4px;
+    border: none;
+    background-color: #6a71b3;
+    color: #ffffff;
+
+    transition-property: background-color, color;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #bc49c2;
+}
+
+.container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 0 auto;
+    max-width: 1660px;
+    width: 100%;
+    height: 100%;
+}
+
+.game__field {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+
+.middle__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    max-width: 63%;
+}
+
+.level__list {
+    display: flex;
+}
+
+.level__list.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.level__list button {
+    background-color: #1DA0A0;
+    height: 130px;
+    border: 1px rgb(1, 69, 114) dashed;
+}
+
+.level__list button:hover {
+    background-color: rgb(245, 230, 94);
+    color: rgb(1, 69, 114);
+}
+
+.left__box,
+.right__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right__box {
+    min-width: 130px;
+}
+
+.menu__btn.is-hidden {
+    display: none;
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 35px;
+    margin-bottom: 18px;
+}
+
+h2{
+    font-size: 25px;
+}
+
+.water__sign {
+    position: absolute;
+    top: 80%;
+    left: 0;
+    z-index: -1;
+    transform: translateY(-50%);
+    width: 500px;
+    pointer-events: none;
+
+    opacity: 0.2;
+}
+
+.timer {
+    display: flex;
+    font-size: 46px;
+}
+.timer.is-hidden {
+    display: none;
+}
+
+.grid__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    width: 100vh;
+    max-width: 100%;
+    height: 100%;
+    max-height: 1050px;
+}
+.grid__item {
+    position: relative;
+    perspective: 700px;
+}
+
+.grid__item * {
+    pointer-events: none;
+}
+
+.grid__item.rotated .item__front {
+    transform: rotateY(0deg);
+}
+
+.grid__item.rotated .item__back {
+    transform: rotateY(180deg);
+}
+
+.item__front, 
+.item__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    transition: 1000ms;
+    backface-visibility: hidden;
+}
+
+.item__front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: antiquewhite;
+    padding: 0px 30px;
+    transform: rotateY(180deg);
+}
+
+.item__front img {
+    max-height: 100%;
+}
+
+.item__back {
+    background-color: rgb(244, 248, 196);
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 14px, #1da0a084 14px, #1da0a082 28px), repeating-linear-gradient(27deg, transparent, transparent 2px, #81a01d82 2px, #8ea01d80 3px);
+    border: #1DA0A0 2px solid;
+    transform: rotateY(360deg);
+}
+
+.table--wraper {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.table {
+    font-size: 25px;
+    letter-spacing: 0.06;
+    border: 2px solid #af76b2;
+    
+    overflow: scroll;
+}
+.table__body tr:hover {
+    color:#1DA0A0
+}
+
+.table th,
+.table td {
+    width: 250px;
+    padding: 5px;
+    border-top: 1.5px dashed #af76b2;
+    border-right: 1.5px dashed #af76b2;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffd863;
+    border-radius: 10px;
+}
+
+.top__ten {
+    font-weight: 700;
+    color: #6a71b3;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.winner {
+    animation-name: blinking;
+    animation-duration: 1000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blinking  {
+    from {
+        background-color: rgb(255, 255, 255);
+        color: #1DA0A0
+    }
+
+    to {
+        background-color: rgba(255, 255, 255, 0);
+        color: #ffffff;
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+    integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Kanit:ital,wght@1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles.css">
+    <title>Find_Pair</title>
+</head>
+<body>
+    <div class="container game__field">
+        <div class="left__box">
+            <h1>
+                <span>Play</span>
+                <span>the</span>
+                <span>Game</span>
+            </h1>
+            <h2>Match the pair <br>
+                with AVENGERS
+            </h2>
+            <img src="./images/Avengers-Transparent-File.png" alt="" class="water__sign">
+        </div>
+        <div class="middle__box"></div>
+        <div class="right__box">
+            <div class="timer">
+                <div class="timer__field">
+                    <span class="value" data-minutes>00</span>
+                </div>
+                <span>:</span>
+                <div class="timer__field">
+                    <span class="value" data-seconds>00</span>
+                </div>
+            </div>
+            <button type="button" data-restart class="menu__btn">Back to menu</button>
+        </div>
+    </div>
+    
+    <template id="start__page">
+        <button type="button" data-scores>Show scores</button>
+        <button type="button" data-start>Start Game</button>
+        <ul class="level__list">
+            <li>
+                <button data-level="beginner">Beginner</button>
+            </li>
+            <li>
+                <button data-level="expert">Expert</button>
+            </li>
+        </ul>
+    </template>
+    
+    <template id="card__field">
+        <div class="grid__container"></div>
+    </template>
+
+    <template id="table__score">
+        <div class="table__score--container">
+            <h1>SCORE TABLE</h1>
+            <p class="top__ten">TOP 100</p>
+            <div class="table--wraper">
+                <table class="table">
+                    <thead>
+                        <tr class="table__row">
+                            <th>Players</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table__body"></tbody>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <script src="./index.js" type="module"></script>
+</body>
+</html>
