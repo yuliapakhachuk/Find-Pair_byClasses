@@ -1,4 +1,4 @@
-let response = await fetch('/heroes.json');
+let response = await fetch('https://yuliapakhachuk.github.io/Find-Pair_byClasses/heroes.json');
 let heroes = await response.json();
 
 
