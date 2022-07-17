@@ -121,13 +121,14 @@ class Game {
     }
 
 
-    #showTableScore = function () { 
+    #showTableScore = function (winnerId) { 
+
         this.#refs.middleBox.innerHTML = "";
     
         this.#refs.middleBox.append(this.#refs.tableScore.content.cloneNode(true));
         this.#refs.table = document.querySelector('.table__score--container');
         this.#refs.tableBody = document.querySelector('.table__body');
-        this.#refs.tableBody.innerHTML = this.#renderScoreTableHTML();
+        this.#refs.tableBody.innerHTML = this.#renderScoreTableHTML(winnerId);
     
         this.#refs.gameTimer.classList.add('is-hidden');
         this.#refs.menuBtn.classList.remove('is-hidden');
@@ -189,12 +190,11 @@ class Game {
             this.#userData.userName = prompt("WELL DONE! Your name is...") || `${this.#arrayByLevel[0].heroName}`;
             this.#userData.userScore = (this.#min * 60) + this.#sec;
             this.#userData.userTime = `${this.#min < 10 ? "0" + this.#min : this.#min}:${this.#sec < 10 ? "0" + this.#sec : this.#sec}`
-            setTimeout(() => (this.#showTableScore()) , 1000);
             this.#savingScore();
         }, 1000);
     }
-
-
+    
+    
     #savingScore = function() {
         const LOCALSTORAGE_KEY = "bestScoresGame";
         const scoreValues = localStorage.getItem("bestScoresGame");
@@ -203,16 +203,18 @@ class Game {
         bestScores.push(this.#userData);
         bestScores.sort((a, b) => a.userScore - b.userScore);
         bestScores.splice(100);
+        const userId = bestScores.findIndex(user => user === this.#userData);
         localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(bestScores));
+        setTimeout(() => (this.#showTableScore(userId)) , 1000);
     }
     
 
-    #renderScoreTableHTML = function() { 
+    #renderScoreTableHTML = function(winnerId) { 
         const bestScores = (JSON.parse(localStorage.getItem("bestScoresGame")) === null ? [] : [...JSON.parse(localStorage.getItem("bestScoresGame"))]);
-
-        return bestScores.slice(0, 100).map(score => {
+        
+        return bestScores.slice(0, 100).map((score, index) => {
             return `
-                <tr class="table__row">
+                <tr class="table__row ${index === winnerId ? "winner" : ''}">
                     <td class="user__name">${score.userName}</td>
                     <td class="user__score">${score.userTime}</td>
                 </tr>
