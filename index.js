@@ -36,7 +36,6 @@ class Game {
     }
 
     constructor( ) { 
-        
         this.#showStartPage()
         this.#refs.menuBtn.addEventListener('click', () => { window.location.reload() })
     }
@@ -48,11 +47,11 @@ class Game {
         
         this.#refs.middleBox.append(this.#refs.startPage.content.cloneNode(true));
         this.#refs.startBtn = document.querySelector("button[data-start]");
-        this.#refs.startBtn.addEventListener('click', this.#chooseLevel);
+        this.#refs.startBtn.addEventListener('click', () => this.#chooseLevel());
         
         this.#refs.scoreBtn = document.querySelector('button[data-scores]');
         this.#refs.scoreBtn.addEventListener('click', this.#showTableScore.bind(this));
-        
+
         this.#refs.levelList = document.querySelector('.level__list');
         this.#refs.levelList.classList.add('is-hidden');
     }
@@ -89,9 +88,9 @@ class Game {
 
     #createGridItems = function() { 
         const randomHeroesArray = this.#randomiseHeroes(heroes);
-        return randomHeroesArray.map((hero, index) =>
+        return randomHeroesArray.map(hero =>
             `
-                <div class="grid__item" data-id=${index} data-hero=${hero.heroName}">
+                <div class="grid__item" data-hero=${hero.heroName}">
                     <div class="item__front">
                         <img src="./images/${hero.number}.png" alt="">
                     </div>
@@ -117,7 +116,7 @@ class Game {
         this.#refs.gridContainer.innerHTML = this.#createGridItems();
         this.#refs.gridContainer.addEventListener('click', (e) => {
             this.#findsPair(e);
-        }, true);
+        });
     }
 
 
@@ -212,7 +211,7 @@ class Game {
     #renderScoreTableHTML = function(winnerId) { 
         const bestScores = (JSON.parse(localStorage.getItem("bestScoresGame")) === null ? [] : [...JSON.parse(localStorage.getItem("bestScoresGame"))]);
         
-        return bestScores.slice(0, 100).map((score, index) => {
+        return bestScores.map((score, index) => {
             return `
                 <tr class="table__row ${index === winnerId ? "winner" : ''}">
                     <td class="user__name">${score.userName}</td>
